@@ -1,6 +1,6 @@
 #!/bin/bash
 
-USERS="jrdemasi casst"
+USERS="jrdemasi hynesgra timmonsd"
 
 # You need not modify below this line
 # A few housekeeping items:
