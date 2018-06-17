@@ -1,10 +1,10 @@
 #!/bin/bash
 
 yum install -y epel-release
-yum install -y python36
+yum install -y python36 python36-devel
 
 curl -o /var//tmp/gh_create.py https://raw.githubusercontent.com/jrdemasi/scripts/master/gh_create.py
-chmod +x /var//tmp/gh_create.py
+chmod +x /var/tmp/gh_create.py
 
 # Add users as args to following: 
 /var/tmp/gh_create.py 
