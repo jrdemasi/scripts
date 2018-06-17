@@ -3,6 +3,9 @@
 USERS="jrdemasi hynesgra timmonsd"
 
 # You need not modify below this line
+
+
+
 # A few housekeeping items:
 timedatectl set-timezone America/Denver
 
@@ -18,6 +21,3 @@ chmod +x /var/tmp/gh_create.py
 
 # Create a cronjob to run gh_create.py every 5 minutes:
 echo "*/5 * * * * root /var/tmp/gh_create.py ${USERS}" > /etc/cron.d/gh_create
-
-# Install bioconda, modify system env: 
-
