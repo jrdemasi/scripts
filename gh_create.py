@@ -45,7 +45,7 @@ class UserMgr(object):
         return()
 
     def mkusers(self):
-        subprocess.run(['groupadd',
+        subprocess.run(['/sbin/groupadd',
                         '--force',  # Exit on success if exists
                         self.shared_grp])
         for u in self.users:
