@@ -3,13 +3,13 @@
 yum install -y epel-release
 yum install -y python36
 
-curl -o /tmp/gh_create.py https://raw.githubusercontent.com/jrdemasi/scripts/master/gh_create.py
-chmod +x /tmp/gh_create.py
+curl -o /var//tmp/gh_create.py https://raw.githubusercontent.com/jrdemasi/scripts/master/gh_create.py
+chmod +x /var//tmp/gh_create.py
 
 # Add users as args to following: 
-/tmp/gh_create.py 
+/var/tmp/gh_create.py 
+
+# Create a cronjob to run gh_create.py every 5 or 10 minutes:
 
 # Install bioconda, modify system env: 
 
-# Cleanup: 
-rm -rf /tmp/gh_create.py
