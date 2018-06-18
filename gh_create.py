@@ -1,12 +1,5 @@
 #!/usr/bin/env python3.6
 
-"""
-A script that takes at least one GitHub username as an argument, creates a unix user 
-of the same name, sets a default (insecure) password, and pulls the users SSH keys from GH.
-Tested on CentOS7.  Known insecure because of os and also because setting hard-coded passwords.
-This is to be used for AWS and other temporary, non-security-intensive resources.
-"""
-
 
 import argparse
 import crypt
@@ -15,7 +8,9 @@ import os
 import pwd
 import shutil
 import subprocess
+from urllib.parse import urlparse
 from urllib.request import urlopen
+
 
 class UserMgr(object):
     def __init__(self, user, password):
@@ -98,6 +93,18 @@ class UserMgr(object):
         self.mod_hashes()
         return()
 
+def chk_URL(in_str):
+    is_url = False
+    _url = urlparse(in_str[0])
+    if _url.scheme in ('http', 'https'):
+        is_url = True
+    if not is_url:
+        return(in_str)
+    else:
+        with urlopen(in_str[0]) as url:
+            users = [i.strip() for i in url.read.decode('utf-8').split()]
+        return(users)
+
 def parseArgs():
     args = argparse.ArgumentParser(description = ('Prep a user'))
     args.add_argument('-p', '--password',
@@ -108,13 +115,15 @@ def parseArgs():
     args.add_argument('user',
                       nargs = '+',
                       help = ('The username(s) to add; must match GitHub '
-                              'username(s)'))
+                              'username(s). Can be a space-separated list OR '
+                              'a URL to a file containing a space-separated '
+                              'list (single-line; must begin with http:// or '
+                              'https://)'))
     return(args)
 
 def main():
     args = vars(parseArgs().parse_args())
-    import pprint
-    pprint.pprint(args)
+    args['user'] = chk_URL(args['user'])
     um = UserMgr(**args)
     um.main()
     return()
