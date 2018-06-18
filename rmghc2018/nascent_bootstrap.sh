@@ -17,7 +17,7 @@ curl -o /var/tmp/gh_create.py https://raw.githubusercontent.com/jrdemasi/scripts
 chmod +x /var/tmp/gh_create.py
 
 # Add users as args to following: 
-/var/tmp/gh_create.py ${USERS}
+/var/tmp/gh_create.py https://raw.githubusercontent.com/jrdemasi/scripts/master/rmghc2018/nascent-users.txt
 
 # Create a cronjob to run gh_create.py every 5 minutes:
-echo "*/5 * * * * root /var/tmp/gh_create.py ${USERS}" > /etc/cron.d/gh_create
+echo "*/5 * * * * root /var/tmp/gh_create.py https://raw.githubusercontent.com/jrdemasi/scripts/master/rmghc2018/nascent-users.txt" > /etc/cron.d/gh_create
