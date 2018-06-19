@@ -21,3 +21,6 @@ chmod +x /var/tmp/gh_create.py
 
 # Create a cronjob to run gh_create.py every 5 minutes:
 echo "*/5 * * * * root /var/tmp/gh_create.py https://raw.githubusercontent.com/jrdemasi/scripts/master/rmghc2018/hackathon-users.txt" > /etc/cron.d/gh_create
+
+# We're going to want nginx for every team just in case
+yum install -y nginx
