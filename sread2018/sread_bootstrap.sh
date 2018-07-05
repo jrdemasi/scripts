@@ -9,3 +9,7 @@ chmod +x /var/tmp/gh_create.py
 # Create a cronjob to run gh_create.py every 5 minutes:
 echo "*/5 * * * * root /var/tmp/gh_create.py -d /Users -s /scratch/Users https://raw.githubusercontent.com/jrdemasi/scripts/master/sread2018/shortread-users.txt" > /etc/cron.d/gh_create
 
+# CLOCK
+timedatectl set-timezone America/Denver
+timedatectl set-ntp on
+
