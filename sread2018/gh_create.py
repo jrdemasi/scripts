@@ -18,9 +18,10 @@ from urllib.request import urlopen
 
 
 class UserMgr(object):
-    def __init__(self, user, homedir, password):
+    def __init__(self, user, homedir, scratchdir, password):
         self.users = [u.strip() for u in user]
         self.homedir = homedir
+        self.scratchdir = scratchdir
         self.password = password
         self.sshkeys = {}
         self.passhashes = {}
@@ -52,7 +53,7 @@ class UserMgr(object):
         for u in self.users:
             subprocess.run(['/usr/sbin/useradd',
                             '--create-home',
-                            '--home-dir', self.homedir,
+                            '--home-dir', os.path.join(self.homedir, u),
                             '--groups', self.shared_grp,
                             '--shell', '/bin/bash',
                             u])
@@ -75,6 +76,19 @@ class UserMgr(object):
                 f.write(self.sshkeys[u])
             os.chmod(_sshfile, 0o600)
             os.chown(_sshfile, _uid, _gid)
+        return()
+
+    def mk_scratchdirs(self):
+        for u in self.users:
+            # Could also use pwd.getpwnam(u).pw_dir instead of
+            # os.path.expanduser(...)
+            _scratchdir = os.path.join(self.scratchdir, u)
+            _uid = pwd.getpwnam(u).pw_uid
+            _gid = grp.getgrnam(u).gr_gid
+            os.makedirs(_scratchdir,
+                        exist_ok = True)
+            os.chmod(_scratchdir, 0o700)
+            os.chown(_scratchdir, _uid, _gid)
         return()
 
     def mod_hashes(self):
@@ -125,6 +139,13 @@ def parseArgs():
                       default = 'asdfasdf',
                       help = ('The password to use for the user(s). '
                               'Default: asdfasdf'))
+
+    args.add_argument('-s', '--scratchdir',
+                      dest = 'scratchdir',
+                      default = '/scratch',
+                      help = ('The default base for scratchdirs.'
+                              'Default: /scratch'))
+
     args.add_argument('user',
                       nargs = '+',
                       help = ('The username(s) to add; must match GitHub '
