@@ -111,6 +111,7 @@ class UserMgr(object):
         self.get_hashes()
         self.mkusers()
         self.prep_ssh()
+        self.mk_scratchdirs()
         self.mod_hashes()
         return()
 
