@@ -128,7 +128,7 @@ def chk_URL(in_str):
 
 def parseArgs():
     args = argparse.ArgumentParser(description = ('Prep a user'))
-    args.add_argument('-h', '--homedir',
+    args.add_argument('-d', '--homedir',
                       dest = 'homedir',
                       default = '/home',
                       help = ('The default base for homedirs.'
