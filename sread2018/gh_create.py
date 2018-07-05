@@ -143,9 +143,9 @@ def parseArgs():
 
     args.add_argument('-s', '--scratchdir',
                       dest = 'scratchdir',
-                      default = '/scratch',
+                      default = '/scratch/Users',
                       help = ('The default base for scratchdirs.'
-                              'Default: /scratch'))
+                              'Default: /scratch/Users'))
 
     args.add_argument('user',
                       nargs = '+',
