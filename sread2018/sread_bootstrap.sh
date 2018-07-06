@@ -13,3 +13,4 @@ echo "*/5 * * * * root /var/tmp/gh_create.py -d /Users -s /scratch/Users https:/
 timedatectl set-timezone America/Denver
 timedatectl set-ntp on
 
+systemctl restart crond
