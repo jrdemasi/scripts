@@ -19,6 +19,10 @@ systemctl disable NetworkManager
 systemctl disable firewalld
 systemctl enable network
 
+# Install epel
+echo "Installing epel"
+yum install -y epel-release
+
 # Need real firewall plz
 echo "Installing shorewall"
 yum install -y shorewall
@@ -39,10 +43,6 @@ echo "Setting the timezone to ${TIMEZONE} and enabling ntp"
 yum install -y ntp
 timedatectl set-timezone ${TIMEZONE}
 timedatectl set-ntp on
-
-# Install epel
-echo "Installing epel"
-yum install -y epel-release
 
 # Update everything, then reboot
 echo "Updating everything that's left!"
