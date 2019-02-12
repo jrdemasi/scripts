@@ -12,7 +12,7 @@ IPV6=false # set to true if you want to install shorewall6
 # Sorry, but we're turning off selinux.
 # If you're some stranger reading this, do not pawn your opinions off on me
 # or rage that I'm turning selinux off. This is my life.
-sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
+sed --follow-symlinks -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/sysconfig/selinux
 
 # Let's get rid of this junk
 systemctl disable NetworkManager
