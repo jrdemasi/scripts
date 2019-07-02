@@ -16,4 +16,5 @@ timedatectl set-ntp on
 systemctl restart crond
 
 #add picard after the fact
-yum -y localinstall /scratch/admin/for_jon/biof-picard2_6_0-2.6.0-1.x86_64.rpm
+#Now installed locally
+#yum -y localinstall /scratch/admin/for_jon/biof-picard2_6_0-2.6.0-1.x86_64.rpm
