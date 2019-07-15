@@ -22,3 +22,5 @@ timedatectl set-ntp on
 
 systemctl restart crond
 
+#Install newer version of DAStk
+/opt/python/3.6.3/bin/pip3 install --upgrade DAStk
