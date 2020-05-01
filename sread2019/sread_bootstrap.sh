@@ -22,3 +22,11 @@ timedatectl set-ntp on
 
 systemctl restart crond
 
+#Install newer version of DAStk
+/opt/python/3.6.3/bin/pip3 install --upgrade DAStk
+
+# Ye olde cellranger
+mkdir -p /etc/modulefiles/cellranger
+echo "-- -*- lua -*-" >> /etc/modulefiles/cellranger/3.0.1.lua
+echo 'whatis("Description: No Description Given")' >> /etc/modulefiles/cellranger/3.0.1.lua
+echo "prepend_path('PATH', '/data/cellranger/3.0.1')" >> /etc/modulefiles/cellranger/3.0.1.lua
